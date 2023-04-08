@@ -10,15 +10,16 @@ from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 from flask_gravatar import Gravatar
 import smtplib
 from functools import wraps
+import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 ckeditor = CKEditor(app)
 Bootstrap(app)
 app.app_context().push()
 
-MY_EMAIL = "shaariq321@gmail.com"
-MY_PASSWORD = "tmdsjasicyearlxt"
+MY_EMAIL = os.environ.get("BLOG_EMAIL")
+MY_PASSWORD = os.environ.get("BLOG_PASSWORD")
 
 app.config['CKEDITOR_PKG_TYPE'] = 'basic'
 
